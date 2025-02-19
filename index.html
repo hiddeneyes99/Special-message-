@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Special Message ✨</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #ffdde1, #ee9ca7, #a29bfe);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .container {
+      background: rgba(255, 255, 255, 0.9);
+      padding: 20px 30px;
+      border-radius: 15px;
+      width: 90%;
+      max-width: 600px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+      text-align: center;
+    }
+
+    .message-box {
+      background: #f7f7f7;
+      padding: 15px;
+      border-radius: 10px;
+      height: 300px;
+      overflow-y: auto;
+      text-align: left;
+      font-size: 16px;
+      color: #333;
+      box-shadow: inset 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .footer {
+      margin-top: 15px;
+      font-size: 14px;
+      color: #6c5ce7;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>🌟 Special Message for You! 🌟</h2>
+    <div class="message-box" id="messageBox">
+      <p id="message"></p>
+    </div>
+    <p class="footer">With best wishes 🫶</p>
+  </div>
+
+  <!-- 🎵 Background music -->
+  <audio id="backgroundMusic" src="Manroop (rap).mp3" autoplay muted playsinline loop></audio>
+
+  <script>
+    const text = `🌅 Good morning! 😄
+
+Waise sach pucho toh mujhe tumhe disturb nahi karna tha 🙃 but mujhe aisa lagta hai tum morning me school jaane se pehle ek baar Instagram zaroor open karti ho 😅 check karne ke liye ki maine koi message kiya hai ya nahi 📩.
+
+Jaisa tumhe pata hai, main har din good morning bolta hun 🌄, toh aaj bhi kaha! Lekin aaj sirf good morning nahi balki ek special message hai ✨:
+
+"Tum mujhe acchi tarah se jaanti ho 😊 isliye mera message open kiya hoga. Main sach me tumhe disturb nahi karna chahta 😅 isliye aaj se tumhare exam khatam hone tak message nahi karunga 📝. Main gussa nahi hun 😇 bas mujhe tension hota hai jab tum mere wajah se tension me aati ho 😔.
+
+Isliye jab tumhara exam khatam hoga ya jab free hogi ya achanak se koi problem ho jise tum kisi se share nahi kar sakti 🗨️  ya phir kuch aisa jab tumhe mera ya kisi insaan ka jarurat ho tab mujhe bas ek message kar dena 💬 main turant aa jaunga 🚀.
+
+Tumhe hi message karke batana hoga ki tumhara exam khatam hogaya hai 📚. Aur ha ek baat aur! 💡
+
+Good morning and best of luck! 🍀 Mujhe pata hai you can easily achieve 🏆. Apne aap pe bharosa rakhna 💪 aur yaad rakhna: 'A single piece of paper can not decide your future.' 📝✨
+
+You are the best! 🦸‍♀️ Take care 🫶😘"`;
+
+    const messageEl = document.getElementById("message");
+    const messageBox = document.getElementById("messageBox");
+    const music = document.getElementById('backgroundMusic');
+    let i = 0;
+
+    function typeMessage() {
+      if (i < text.length) {
+        messageEl.innerHTML += text.charAt(i) === "\n" ? "<br>" : text.charAt(i);
+        i++;
+
+        // ✅ Auto-scroll to bottom after every character
+        messageBox.scrollTop = messageBox.scrollHeight;
+
+        setTimeout(typeMessage, 80); // Typing speed: 80ms per character
+      }
+    }
+
+    window.onload = () => {
+      typeMessage();
+
+      // 🔊 Unmute after ensuring autoplay starts instantly
+      music.play().then(() => {
+        music.muted = false; // Unmute after successful play
+      }).catch(() => {
+        // If autoplay is blocked, play on first user interaction
+        document.body.addEventListener('click', () => {
+          music.muted = false;
+          music.play();
+        }, { once: true });
+      });
+    };
+  </script>
+</body>
+</html>
